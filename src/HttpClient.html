@@ -201,7 +201,6 @@
         </div>
       </div>
     </div>  
-      
   </div>
 
   <script>
@@ -210,9 +209,10 @@
     var json = JSON;
     var lengthTable = 0;
     var selected = 0;
+
     var jsonRequesting = function(){
       req=new XMLHttpRequest();
-      req.open("GET",'https://6e74-2804-4c08-8a00-91c-f0e7-d005-f70-23e8.ngrok.io/pacientes',true);
+      req.open("GET",'https://631a-2804-4c08-8a00-91c-3199-d511-4e24-b165.ngrok.io/pacientes',true);
       req.send();
 
       req.onload=function(){
@@ -284,8 +284,6 @@
         document.querySelectorAll('p')[4].innerHTML = "Saturacao Sanguinea: "+JSON.stringify(item[i].SaturacaoSanguinea).replace(/['"{}]+/g, '');
         document.querySelectorAll('p')[5].innerHTML = "Estado: "+JSON.stringify(item[i].Estado).replace(/['"{}]+/g, '');
       }
-
-      
     }  
 
   </script>
