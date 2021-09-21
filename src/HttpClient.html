@@ -202,7 +202,7 @@
       </div>
     </div>  
   </div>
-
+  
   <script>
     var table = document.querySelectorAll("tbody")[0];
     var tableUrgencia = document.querySelectorAll("tbody")[1];
@@ -212,7 +212,7 @@
 
     var jsonRequesting = function(){
       req=new XMLHttpRequest();
-      req.open("GET",'https://631a-2804-4c08-8a00-91c-3199-d511-4e24-b165.ngrok.io/pacientes',true);
+      req.open("GET",'http://127.0.0.1:5000/pacientes',true);
       req.send();
 
       req.onload=function(){
@@ -258,7 +258,7 @@
       row.appendChild(estado);
       row.appendChild(selecionar);
 
-      if(JSON.stringify(item[i].Estado).replace(/['"{}]+/g, '') === 'Grave'){
+      if(JSON.stringify(item[i].Estado).replace(/['"{}]+/g, '') === 'Grave' || JSON.stringify(item[i].Estado).replace(/['"{}]+/g, '') === 'Alerta'){
         tableUrgencia.appendChild(row);
       }else {
         table.appendChild(row);
@@ -271,7 +271,7 @@
         document.querySelectorAll('p')[2].innerHTML = "Frequencia Respiratoria: "+JSON.stringify(item[i].FrequenciaRespiratoria).replace(/['"{}]+/g, '');
         document.querySelectorAll('p')[3].innerHTML = "Frequencia Cardiaca: "+JSON.stringify(item[i].FrequenciaCardiaca).replace(/['"{}]+/g, '');
         document.querySelectorAll('p')[4].innerHTML = "Saturacao Sanguinea: "+JSON.stringify(item[i].SaturacaoSanguinea).replace(/['"{}]+/g, '');
-        document.querySelectorAll('p')[5].innerHTML = "Estado: "+JSON.stringify(item[i].Estado).replace(/['"{}]+/g, '');
+        document.querySelectorAll('p')[5].innerHTML = "MEWS: "+JSON.stringify(item[i].Pontuacao).replace(/['"{}]+/g, '');
       }
       
       btn.onclick =  function(){
@@ -282,7 +282,7 @@
         document.querySelectorAll('p')[2].innerHTML = "Frequencia Respiratoria: "+JSON.stringify(item[i].FrequenciaRespiratoria).replace(/['"{}]+/g, '');
         document.querySelectorAll('p')[3].innerHTML = "Frequencia Cardiaca: "+JSON.stringify(item[i].FrequenciaCardiaca).replace(/['"{}]+/g, '');
         document.querySelectorAll('p')[4].innerHTML = "Saturacao Sanguinea: "+JSON.stringify(item[i].SaturacaoSanguinea).replace(/['"{}]+/g, '');
-        document.querySelectorAll('p')[5].innerHTML = "Estado: "+JSON.stringify(item[i].Estado).replace(/['"{}]+/g, '');
+        document.querySelectorAll('p')[5].innerHTML = "MEWS: "+JSON.stringify(item[i].Pontuacao).replace(/['"{}]+/g, '');
       }
     }  
 
