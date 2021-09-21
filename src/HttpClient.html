@@ -66,9 +66,6 @@
       height: auto;
       background-image: url("https://wallpaperaccess.com/full/1282794.jpg");
       background-size: 2000px;
-      min-height: 1000px;
-      min-width: 1400px;
-      height: auto;
 
       position: relative;
       top: 0;
@@ -87,6 +84,8 @@
     .container {
       width: 90%;
       display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     main {
@@ -152,29 +151,31 @@
   <header>
     <nav class="container">
       <a style="align-items: center;">
-        <img src="https://img-premium.flaticon.com/png/512/3223/premium/3223551.png?token=exp=1631821469~hmac=ed6d168c74bf11b94573ff51c4fb8b62" alt="" id="logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/2741/2741121.png" alt="" id="logo">
         <h1>Monitoramento Covid-19</h1>
       </a>
     </nav>
   </header>
 
   <div class="container">
-    <div class="card" style="width: 400px; text-align: center;">
-      <img class="card-img-top mt-4" style="width: 230px; margin-left: auto; margin-right: auto;" src="https://lirp.cdn-website.com/b9c8e2cb/dms3rep/multi/opt/General-Practice+%281%29-640w.png" alt="Card image">
-      <div class="card-body">
-        <h4 class="card-title" style="margin-bottom: 30px; font-family: Verdana, Geneva, Tahoma, sans-serif; font-weight: bold;">Paciente</h4>
-        <p class="card-text ">Dados do Paciente</p>
-        <p class="card-text "></p>
-        <p class="card-text "></p>
-        <p class="card-text "></p>
-        <p class="card-text "></p>
-        <p class="card-text "></p>
+    <div class="flex">
+      <div class="card" style="width: 400px; height: 630px;text-align: center;">
+        <img class="card-img-top mt-4" style="width: 230px; margin-left: auto; margin-right: auto;" src="https://lirp.cdn-website.com/b9c8e2cb/dms3rep/multi/opt/General-Practice+%281%29-640w.png" alt="Card image">
+        <div class="card-body">
+          <h4 class="card-title" style="margin-bottom: 30px; font-family: Verdana, Geneva, Tahoma, sans-serif; font-weight: bold;">Paciente</h4>
+          <p class="card-text ">Dados do Paciente</p>
+          <p class="card-text "></p>
+          <p class="card-text "></p>
+          <p class="card-text "></p>
+          <p class="card-text "></p>
+          <p class="card-text "></p>
+        </div>
       </div>
     </div>
 
     <div class="flex">
       <div class="card">
-        <div class="card-body table-scroll" style="min-width: 600px; max-width: 600px; max-height: 300px; min-height: 300px;">
+        <div class="card-body table-scroll" style="min-width: 600px; max-width: 600px; max-height: 630px; height: 630px;">
           <table class="table table-striped">
             <thead>
               <tr>
@@ -190,16 +191,7 @@
           </table>
         </div>
       </div>
-      <div class="card mt-4" style="background-color: #fff;">
-        <div class="card-body table-scroll" style="min-width: 600px; max-width: 600px; max-height: 300px; min-height: 300px;">
-          <table class="table table-striped" style="background-color: #ff4040;">
-            <tbody class="urgencia">
-              
-            </tbody>
-
-          </table>
-        </div>
-      </div>
+     
     </div>  
   </div>
   
@@ -219,7 +211,6 @@
         json=JSON.parse(req.responseText);
         if(lengthTable > 0){
           table.innerHTML = '';
-          tableUrgencia.innerHTML = '';
         } 
         
         for (var i = 0; i < Object.keys(json).length; i++){
@@ -258,12 +249,12 @@
       row.appendChild(estado);
       row.appendChild(selecionar);
 
-      if(JSON.stringify(item[i].Estado).replace(/['"{}]+/g, '') === 'Grave' || JSON.stringify(item[i].Estado).replace(/['"{}]+/g, '') === 'Alerta'){
-        tableUrgencia.appendChild(row);
-      }else {
-        table.appendChild(row);
-      }
-
+      if(JSON.stringify(item[i].Estado).replace(/['"{}]+/g, '') === 'Grave'){
+        row.style.backgroundColor = '#FF4040';
+      } else if(JSON.stringify(item[i].Estado).replace(/['"{}]+/g, '') === 'Alerta'){ 
+        row.style.backgroundColor = '#FFFF66';   
+      } 
+      table.appendChild(row);
       if (selected == i){
         document.querySelector('h4').innerHTML = JSON.stringify(item[i].Nome).replace(/['"{}]+/g, '');
         document.querySelectorAll('p')[0].innerHTML = "Temperatura: "+JSON.stringify(item[i].Temperatura).replace(/['"{}]+/g, '');
